@@ -387,11 +387,18 @@ void ui_set_window_title(GeanyDocument *doc)
 			gchar *short_name = document_get_basename_for_display(doc, 30);
 			gchar *dirname = g_path_get_dirname(DOC_FILENAME(doc));
 
+			// Strip out the home directory
+			GString *stripped_dirname = g_string_new(dirname);
+			g_free(dirname);
+			utils_string_replace_first(stripped_dirname, g_get_home_dir(), "~");
+			dirname = g_string_free(stripped_dirname, FALSE);
+
 			g_string_append(str, short_name);
 			g_string_append(str, " - ");
 			g_string_append(str, dirname ? dirname : "");
-			g_free(short_name);
+
 			g_free(dirname);
+			g_free(short_name);
 		}
 		g_string_append(str, " - ");
 	}
