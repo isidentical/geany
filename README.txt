@@ -4,10 +4,13 @@ My personal Geany fork.
 
 Differences
 -----------
-- When you switch projects, geany closes all active files. In general, this is effective
+When you switch projects, geany closes all active files. In general, this is effective
 (you probably create projects just for saving up different sessions etc.) but I don't
 quite like it. This feature is removed
 
+Geany displays the absolute path of every file (like `<filename> - /home/isidentical/geany/geany/ [PROJECT]`)
+which is quite annoying, for various of reasons. The home is now stripped away `/home/isidentical/`
+becomes `~` (like `<filename> - ~/geany/geany/ [PROJECT]`).
 
 License
 -------
