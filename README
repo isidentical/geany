@@ -2,6 +2,13 @@ isidentical's Geany fork
 ------------------------
 My personal Geany fork.
 
+Differences
+-----------
+- When you switch projects, geany closes all active files. In general, this is effective
+(you probably create projects just for saving up different sessions etc.) but I don't
+quite like it. This feature is removed
+
+
 License
 -------
 Geany is distributed under the terms of the GNU General Public License

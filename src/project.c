@@ -413,12 +413,6 @@ gboolean project_close(gboolean open_default)
 	if (!write_config())
 		g_warning("Project file \"%s\" could not be written", app->project->file_name);
 
-	if (project_prefs.project_session)
-	{
-		/* close all existing tabs first */
-		if (!document_close_all())
-			return FALSE;
-	}
 	ui_set_statusbar(TRUE, _("Project \"%s\" closed."), app->project->name);
 	destroy_project(open_default);
 	return TRUE;
@@ -1075,8 +1069,6 @@ static gboolean load_config(const gchar *filename)
 	{
 		/* save current (non-project) session (it could have been changed since program startup) */
 		configuration_save_default_session();
-		/* now close all open files */
-		document_close_all();
 		/* read session files so they can be opened with configuration_open_files() */
 		configuration_load_session_files(config, FALSE);
 	}
