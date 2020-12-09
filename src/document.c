@@ -731,7 +731,6 @@ static gboolean remove_page(guint page_num)
 		notebook_remove_page(page_num);
 		sidebar_remove_document(doc);
 		navqueue_remove_file(doc->file_name);
-		msgwin_status_add(_("File %s closed."), DOC_FILENAME(doc));
 	}
 	g_free(doc->encoding);
 	g_free(doc->priv->saved_encoding.encoding);
@@ -886,9 +885,6 @@ GeanyDocument *document_new_file(const gchar *utf8_filename, GeanyFiletype *ft, 
 	g_signal_connect(doc->editor->sci, "sci-notify", G_CALLBACK(editor_sci_notify_cb), doc->editor);
 
 	g_signal_emit_by_name(geany_object, "document-new", doc);
-
-	msgwin_status_add(_("New file \"%s\" opened."),
-		DOC_FILENAME(doc));
 
 	return doc;
 }
@@ -1247,10 +1243,6 @@ void document_apply_indent_settings(GeanyDocument *doc)
 					name = _("Tabs and Spaces");
 					break;
 			}
-			/* For translators: first wildcard is the indentation mode (Spaces, Tabs, Tabs
-			 * and Spaces), the second one is the filename */
-			ui_set_statusbar(TRUE, _("Setting %s indentation mode for %s."), name,
-				DOC_FILENAME(doc));
 		}
 	}
 	else if (doc->file_type->indent_type > -1)
@@ -1484,7 +1476,6 @@ GeanyDocument *document_open_file_full(GeanyDocument *doc, const gchar *filename
 		if (reload)
 		{
 			g_signal_emit_by_name(geany_object, "document-reload", doc);
-			ui_set_statusbar(TRUE, _("File %s reloaded."), display_filename);
 		}
 		else
 		{
@@ -1492,9 +1483,6 @@ GeanyDocument *document_open_file_full(GeanyDocument *doc, const gchar *filename
 			/* For translators: this is the status window message for opening a file. %d is the number
 			 * of the newly opened file, %s indicates whether the file is opened read-only
 			 * (it is replaced with the string ", read-only"). */
-			msgwin_status_add(_("File %s opened (%d%s)."),
-				display_filename, gtk_notebook_get_n_pages(GTK_NOTEBOOK(main_widgets.notebook)),
-				(readonly) ? _(", read-only") : "");
 		}
 
 		/* now the document is fully ready, display it (see notebook_new_tab()) */
@@ -2222,7 +2210,6 @@ gboolean document_save_file(GeanyDocument *doc, gboolean force)
 
 		document_update_tab_label(doc);
 
-		msgwin_status_add(_("File %s saved."), doc->file_name);
 		ui_update_statusbar(doc, -1);
 #ifdef HAVE_VTE
 		vte_cwd((doc->real_path != NULL) ? doc->real_path : doc->file_name, FALSE);
