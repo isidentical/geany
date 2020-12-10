@@ -1,0 +1,3 @@
+[submodule "geany-plugins"]
+	path = geany-plugins
+	url = git@github.com:geany/geany-plugins.git
