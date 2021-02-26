@@ -1,6 +1,6 @@
 
 colorschemes = \
-	colorschemes/alt.conf
+	colorschemes/inkpot.conf
 
 filetypes_dist = \
 	filedefs/filetypes.abaqus \

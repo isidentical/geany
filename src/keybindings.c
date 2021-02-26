@@ -386,7 +386,7 @@ static void init_default_kb(void)
 		GDK_k, GEANY_PRIMARY_MOD_MASK, "edit_deleteline", _("_Delete Current Line(s)"),
 		"delete_current_lines1");
 	add_kb(group, GEANY_KEYS_EDITOR_DELETELINETOEND, NULL,
-		GDK_Delete, GDK_SHIFT_MASK | GEANY_PRIMARY_MOD_MASK, "edit_deletelinetoend",
+		GDK_k, GDK_SHIFT_MASK | GEANY_PRIMARY_MOD_MASK, "edit_deletelinetoend",
 		_("Delete to line end"), NULL);
 	add_kb(group, GEANY_KEYS_EDITOR_DELETELINETOBEGINNING, NULL,
 		GDK_BackSpace, GDK_SHIFT_MASK | GEANY_PRIMARY_MOD_MASK, "edit_deletelinetobegin",
